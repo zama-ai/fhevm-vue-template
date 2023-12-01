@@ -14,14 +14,14 @@ const token = instance.generateToken({
 </script>
 
 <template>
-  <main class="main">
+  <main>
     <dl>
       <dt class="title">This is an encryption of 1337:</dt>
-      <dd>
+      <dd class="dd">
         <pre v-if="encryption" class="pre">{{ toHexString(encryption) }}</pre>
       </dd>
       <dt class="title">And this is a EIP-712 token</dt>
-      <dd>
+      <dd class="dd">
         <pre v-if="token" class="pre"> {{ JSON.stringify(token.token) }}</pre>
       </dd>
     </dl>
@@ -29,10 +29,10 @@ const token = instance.generateToken({
 </template>
 
 <style scoped>
-.main {
-  max-width: 90vw;
-  margin: 0 auto;
+.dd {
+  margin: 0;
 }
+
 .pre {
   white-space: break-spaces;
   word-wrap: break-word;
