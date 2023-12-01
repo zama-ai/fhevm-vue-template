@@ -1,0 +1,22 @@
+{
+  "name": "fhevmjs-vue-template",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "ethers": "^6.9.0",
+    "fhevmjs": "^0.2.2",
+    "vue": "^3.3.8"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.0",
+    "typescript": "^5.2.2",
+    "vite": "^5.0.4",
+    "vue-tsc": "^1.8.22"
+  }
+}
