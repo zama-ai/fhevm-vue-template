@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "ethers": "^6.9.0",
-    "fhevmjs": "^0.2.2",
+    "fhevmjs": "^0.3.1",
     "vue": "^3.3.8"
   },
   "devDependencies": {
