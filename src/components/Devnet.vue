@@ -8,7 +8,7 @@ const toHexString = (bytes: Uint8Array) => bytes.reduce((str, byte) => str + byt
 const instance = getInstance();
 const encryption = instance.encrypt32(1337);
 
-const token = instance.generateToken({
+const token = instance.generatePublicKey({
   verifyingContract: '0x309cf2aae85ad8a1db70ca88cfd4225bf17a7482',
 });
 </script>
@@ -22,7 +22,7 @@ const token = instance.generateToken({
       </dd>
       <dt class="title">And this is a EIP-712 token</dt>
       <dd class="dd">
-        <pre v-if="token" class="pre"> {{ JSON.stringify(token.token) }}</pre>
+        <pre v-if="token" class="pre"> {{ JSON.stringify(token.eip712) }}</pre>
       </dd>
     </dl>
   </main>
