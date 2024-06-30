@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import { BrowserProvider, Eip1193Provider } from 'ethers';
+import { ref } from 'vue';
+import { BrowserProvider } from 'ethers';
 import Devnet from './Devnet.vue';
 
 import { createFhevmInstance } from '../fhevmjs';

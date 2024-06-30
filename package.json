@@ -10,13 +10,14 @@
   },
   "dependencies": {
     "ethers": "^6.9.0",
-    "fhevmjs": "^0.4.0",
-    "vue": "^3.3.8"
+    "fhevmjs": "^0.5.2",
+    "vue": "^3.4.31"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.0",
-    "typescript": "^5.2.2",
+    "typescript": "^5.5.2",
     "vite": "^5.0.4",
+    "vite-plugin-node-polyfills": "^0.22.0",
     "vue-tsc": "^1.8.22"
   }
 }
