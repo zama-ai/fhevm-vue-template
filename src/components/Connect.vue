@@ -5,22 +5,24 @@ import Devnet from './Devnet.vue';
 
 import { createFhevmInstance } from '../fhevmjs';
 
-const AUTHORIZED_CHAIN_ID = ['0x1f49', '0x1f4a', '0x1f4b', '0x2328'];
+const AUTHORIZED_CHAIN_ID = ['0xaa36a7', '0x2328'];
 
 const validNetwork = ref(false);
 const connected = ref(false);
+const loading = ref(false);
 const account = ref<string | null>(null);
 const hasWallet = !!window.ethereum;
 const provider = new BrowserProvider(window.ethereum);
 
 const refreshNetwork = async () => {
   if (await hasValidNetwork()) {
-    await createFhevmInstance();
     validNetwork.value = true;
+    loading.value = true;
+    await createFhevmInstance();
+    loading.value = false;
   } else {
-    validNetwork.value = false;
+    setValidNetwork(false);
   }
-  return 'ok';
 };
 
 const switchNetwork = async () => {
@@ -30,24 +32,8 @@ const switchNetwork = async () => {
       params: [{ chainId: AUTHORIZED_CHAIN_ID[0] }],
     });
   } catch (e) {
-    await window.ethereum.request({
-      method: 'wallet_addEthereumChain',
-      params: [
-        {
-          chainId: AUTHORIZED_CHAIN_ID[0],
-          rpcUrls: ['https://devnet.zama.ai/'],
-          chainName: 'Zama Devnet',
-          nativeCurrency: {
-            name: 'ZAMA',
-            symbol: 'ZAMA',
-            decimals: 18,
-          },
-          blockExplorerUrls: ['https://main.explorer.zama.ai'],
-        },
-      ],
-    });
+    console.error('No Sepolia chain configured');
   }
-  await refreshNetwork();
 };
 
 const connect = ref(async () => {
@@ -94,10 +80,13 @@ window.ethereum.on('chainChanged', refreshNetwork);
   <div v-if="hasWallet">
     <div v-if="connected">
       <div v-if="validNetwork">
-        <div class="account">Connected with {{ account }}</div>
-        <div class="child"><Devnet :account="account" :provider="provider" /></div>
+        <div v-if="loading">Loading</div>
+        <div v-else>
+          <div class="account">Connected with {{ account }}</div>
+          <div class="child"><Devnet :account="account" :provider="provider" /></div>
+        </div>
       </div>
-      <div v-else><button class="button" @click="switchNetwork">Switch to Zama Devnet</button></div>
+      <div v-else><button class="button" @click="switchNetwork">Switch to Sepolia</button></div>
     </div>
     <div v-else><button class="button" @click="connect">Connect your wallet</button></div>
   </div>
