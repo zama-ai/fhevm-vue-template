@@ -40,8 +40,8 @@ export async function storePublicParams(
 export async function getPublicParams(
   acl: string
 ): Promise<{ publicParamsId: string; publicParams: Uint8Array } | null> {
+  const db = await dbPromise;
   try {
-    const db = await dbPromise;
     const result = await db.get('paramsStore', acl);
     return result ? result.value : null;
   } catch (e) {
@@ -59,10 +59,9 @@ export async function storePublicKey(
 }
 
 export async function getPublicKey(acl: string): Promise<{ publicKeyId: string; publicKey: Uint8Array } | null> {
+  const db = await dbPromise;
   try {
-    const db = await dbPromise;
     const result = await db.get('publicKeyStore', acl);
-
     return result ? result.value : null;
   } catch (e) {
     return null;
