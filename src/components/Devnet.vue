@@ -1,17 +1,27 @@
 <script setup lang="ts">
+import { getAddress } from 'ethers';
 import { ref } from 'vue';
 import { getInstance } from '../fhevmjs';
 
 const toHexString = (bytes: Uint8Array) => bytes.reduce((str, byte) => str + byte.toString(16).padStart(2, '0'), '');
 
-// defineProps<{ msg: string }>();
+const handles = ref(null);
+const inputProof = ref(null);
+
 const instance = getInstance();
-const input = instance.createEncryptedInput(
-  '0x309cf2aae85ad8a1db70ca88cfd4225bf17a7482',
-  '0xCE835273d4A97d324A11e30BC900c43C1c1269F9'
-);
-input.add64(1337);
-const { handles, inputProof } = input.encrypt();
+
+const encrypt = async (val: number) => {
+  const now = Date.now();
+  const enc = await instance
+    .createEncryptedInput(
+      getAddress('0x309cf2aae85ad8a1db70ca88cfd4225bf17a7456'),
+      getAddress('0x309cf2aae85ad8a1db70ca88cfd4225bf17a7482')
+    )
+    .add64(1337)
+    .encrypt();
+  handles.value = enc.handles;
+  inputProof.value = enc.inputProof;
+};
 
 const { publicKey } = instance.generateKeypair();
 const eip712 = instance.createEIP712(publicKey, '0x309cf2aae85ad8a1db70ca88cfd4225bf17a7482');
@@ -19,9 +29,10 @@ const eip712 = instance.createEIP712(publicKey, '0x309cf2aae85ad8a1db70ca88cfd42
 
 <template>
   <main>
+    <button class="button" @click="encrypt">Encrypt 1337</button>
     <dl>
       <dt class="title">This is an encryption of 1337:</dt>
-      <dd class="dd">
+      <dd class="dd" v-if="handles">
         <pre v-if="handles" class="pre">Handle: {{ toHexString(handles[0]) }}</pre>
         <pre v-if="inputProof" class="pre">Input Proof: {{ toHexString(inputProof) }}</pre>
       </dd>
