@@ -5,13 +5,12 @@ import { getInstance } from '../fhevmjs';
 
 const toHexString = (bytes: Uint8Array) => bytes.reduce((str, byte) => str + byte.toString(16).padStart(2, '0'), '');
 
-const handles = ref(null);
-const inputProof = ref(null);
+const handles = ref<Uint8Array[] | null>(null);
+const inputProof = ref<Uint8Array | null>(null);
 
 const instance = getInstance();
 
-const encrypt = async (val: number) => {
-  const now = Date.now();
+const encrypt = async () => {
   const enc = await instance
     .createEncryptedInput(
       getAddress('0x309cf2aae85ad8a1db70ca88cfd4225bf17a7456'),

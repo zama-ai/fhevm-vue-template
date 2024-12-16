@@ -4,19 +4,22 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/dev.js",
+    "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prettier": "prettier --write \"**/*.{js,json,md,sol,ts,yml}\"",
+    "prettier:check": "prettier --check \"**/*.{js,json,md,sol,ts,yml}\""
   },
   "dependencies": {
     "ethers": "^6.13.4",
-    "fhevmjs": "^0.6.0",
+    "fhevmjs": "^0.6.2",
     "idb": "^8.0.0",
+    "typescript": "5.6.2",
     "vue": "^3.5.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
-    "typescript": "^5.7.2",
+    "prettier": "^3.4.2",
     "vite": "^5.4.11",
     "vite-plugin-node-polyfills": "^0.22.0",
     "vue-tsc": "^2.1.10"

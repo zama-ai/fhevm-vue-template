@@ -20,8 +20,6 @@ const refreshNetwork = async () => {
     loading.value = true;
     await createFhevmInstance();
     loading.value = false;
-  } else {
-    setValidNetwork(false);
   }
 };
 
