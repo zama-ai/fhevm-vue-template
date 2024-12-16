@@ -14,12 +14,12 @@
     "ethers": "^6.13.4",
     "fhevmjs": "^0.6.2",
     "idb": "^8.0.0",
+    "typescript": "5.6.2",
     "vue": "^3.5.13"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
     "prettier": "^3.4.2",
-    "typescript": "^5.7.2",
     "vite": "^5.4.11",
     "vite-plugin-node-polyfills": "^0.22.0",
     "vue-tsc": "^2.1.10"
