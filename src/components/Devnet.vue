@@ -11,7 +11,6 @@ const inputProof = ref(null);
 const instance = getInstance();
 
 const encrypt = async (val: number) => {
-  const now = Date.now();
   const enc = await instance
     .createEncryptedInput(
       getAddress('0x309cf2aae85ad8a1db70ca88cfd4225bf17a7456'),
